@@ -4,23 +4,23 @@
 #include <sstream>
 using namespace std;
 
-string format(int i)
+string format(unsigned int i)
 {
     ostringstream result;
-    cout.width(7); result << left << to_string(i);
+    cout.width(10); result << right << to_string(i);
 	return result.str();
 }
 
-void pascal(int rows)
+void pascal(unsigned int rows)
 {
-    vector<int> current = {0, 1, 0};
-    vector<int> temp;
-    int spaces = rows;
+    vector<unsigned int> current = {0, 1, 0};
+    vector<unsigned int> temp;
+    unsigned int spaces = rows;
     for (int e = 0; e < rows; ++e)
     {
         for (int i = 0; i < spaces - 1; ++i)
         {
-            cout << "    ";
+            cout << "     ";
         }
         --spaces;
         
@@ -37,10 +37,7 @@ void pascal(int rows)
         }
         temp.push_back(0);
         current.clear();
-        for (auto a : temp)
-        {
-            current.push_back(a);
-        }
+        current = temp;
         temp.clear();
     }
 }
@@ -48,10 +45,11 @@ void pascal(int rows)
 int main()
 {
 	int rows;
+	cout << "How many rows of Pascal's triangle would you like?\n";
 	cin >> rows;
 	while (!cin)
 	{
-		cout << "Not a valid entry\n";
+		cout << "Not a valid entry, please enter a number\n";
 		cin.clear();
 		cin.ignore();
 	}
