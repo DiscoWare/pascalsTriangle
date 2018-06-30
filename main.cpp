@@ -1,36 +1,26 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 using namespace std;
 
 string format(int i)
 {
-    if (i >= 1000)
-    {
-        return " " + to_string(i) + " ";
-    }
-    else if (i >= 100)
-    {
-        return "  " + to_string(i) + " ";
-    }
-    else if (i >= 10)
-    {
-        return "  " + to_string(i) + "  ";
-    }
-    else 
-        return "   " + to_string(i) + "  ";
+    ostringstream result;
+    cout.width(7); result << left << to_string(i);
+	return result.str();
 }
 
 void pascal(int rows)
 {
     vector<int> current = {0, 1, 0};
     vector<int> temp;
-    int spaces = rows - 1;
+    int spaces = rows;
     for (int e = 0; e < rows; ++e)
     {
-        for (int i = 0; i < spaces; ++i)
+        for (int i = 0; i < spaces - 1; ++i)
         {
-            cout << "   ";
+            cout << "    ";
         }
         --spaces;
         
@@ -57,6 +47,14 @@ void pascal(int rows)
  
 int main()
 {
-    pascal(16);
+	int rows;
+	cin >> rows;
+	while (!cin)
+	{
+		cout << "Not a valid entry\n";
+		cin.clear();
+		cin.ignore();
+	}
+    pascal(rows);
     return 0;
 }
